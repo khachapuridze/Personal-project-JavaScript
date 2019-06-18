@@ -4,7 +4,7 @@ export class LMSModel{
     }
 
     add(subject){
-        if(typeof subject === "object"){
+        if(subject && typeof subject === "object"){
         this.subjects.set(subject.id, subject);
         }
         else{
@@ -14,7 +14,7 @@ export class LMSModel{
 
     remove(subject){
         if(this.subjects.has(subject.id)){
-            this.subjects.clear();
+            this.teachers.delete(subject.id);
         }
         else{
             throw new Error ("There is not such subject");
@@ -31,6 +31,11 @@ export class LMSModel{
     }
 
     readAll(){
-        return [this.subjects].map;
+        let read = new Map();
+        this.subjects.forEach(function (subject) {
+            read.set('subjectId',subject.id);
+        });
+
+        return [read];
     }
 }
