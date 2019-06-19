@@ -7,15 +7,15 @@ import {GradeBooksModel} from './school';
 
        // $$  SubjectModel And LMSModel
 
-// const history = new SubjectsModel({
-//     title: 'History',
-//     lessons: 24,
-//     description: 'My desc'
-//   });
+const history = new SubjectsModel({
+    title: 'History',
+    lessons: 24,
+    description: 'My desc'
+  });
 // console.log(history.id);
 
-// const lms = new LMSModel();
-// lms.add(history);
+const lms = new LMSModel();
+lms.add(history);
 // // lms.remove(history);
 // console.log(lms.readAll());
 // console.log(lms.verify(history));
@@ -23,34 +23,34 @@ import {GradeBooksModel} from './school';
 
       // $$  TeachersModel $$
 
-// let data = {
+let data = {
 
-//   "name": {
-//     "first": "fasf",
-//     "last": "asf"
-//   },
-//   "image": "string",
-//   "dateOfBirth": "string", // format date
-//   "emails": [
-//     {
-//       "email": "some",
-//       "primary": true
-//     }
-//   ],
-//   "phones": [
-//     {
-//       "phone": "string",
-//       "primary": false
-//     }
-//   ],
-//   "sex": "string", // male or female
-//   "subjects": [
-//     {
-//       "subject": "string"
-//     }
-//   ],
-//   "description": "string",
-// };
+  "name": {
+    "first": "fasf",
+    "last": "asf"
+  },
+  "image": "string",
+  "dateOfBirth": "string", // format date
+  "emails": [
+    {
+      "email": "some",
+      "primary": true
+    }
+  ],
+  "phones": [
+    {
+      "phone": "string",
+      "primary": false
+    }
+  ],
+  "sex": "string", // male or female
+  "subjects": [
+    {
+      "subject": "string"
+    }
+  ],
+  "description": "string",
+};
 // let updatedProfile = {
 
 //   "name": {
@@ -79,9 +79,9 @@ import {GradeBooksModel} from './school';
 //   ],
 //   "description": "string",
 // };
-// const teachers = new TeachersModel();
+const teachers = new TeachersModel();
 
-// const teacherId = teachers.add(data);
+const teacherId = teachers.add(data);
 // const updateTeacher = teachers.update(teacherId, updatedProfile);
 // teachers.remove(teacherId)
 // console.log(teachers.read(teacherId));
@@ -127,7 +127,7 @@ let updatePupilData= {
 const pupils = new PupilsModel();
 const pupil = pupils.add(pupilData);
 // console.log(pupil.id);
-pupils.update(pupil.id, updatePupilData);
+// pupils.update(pupil.id, updatePupilData);
 // pupils.remove(pupil.id)
 // console.log(pupils.read(pupil.id));
 
@@ -154,38 +154,33 @@ groups.removePupil(groupId, pupil.id);
 
          // $$Gradebook$$
 
-// const pupilId = pupil.id;
-// const teacherId = teacherId;
-// const gradebooks = new GradebooksModel(groups, teachers, lms);
-// const level = 1;
-// const gradebook = gradebooks.add(level, group.id);
 
 
-// const record = {
-//   pupilId: pupilId,
-//   teacherId: teacherId,
-//   subjectId: history.id,
-//   lesson: 1,
-//   mark: 9
-// };
+const pupilId = pupil.id;
+const teachersId = teacherId;
+const gradebooks = new GradeBooksModel(groups, teachers, lms);
+const level = 1;
+
+const gradebook = gradebooks.add(level, groupId);
+
+console.log(gradebook);
+const record = {
+  pupilId: pupilId,
+  teacherId: teachersId,
+  subjectId: history.id,
+  lesson: 1,
+  mark: 9
+};
 
 
+console.log(gradebooks.addRecord(gradebook, record));
 
-// gradebooks.addRecord(gradebookId, record);
 
-// // Read information about oliver results
-// const oliver = gradebooks.read(gradebookId, pupilId);
-// {
-//   name: 'Oliver Black',
-//   records: [
-//     {
-//       teacher: 'Elizabeth Holms',
-//       subject: 'History',
-//       lesson: 1,
-//       mark: 9
-//     }
-//   ]
-// }
+// Read information about oliver results
+const oliver = gradebooks.read(gradebook, pupilId);
+console.log(oliver);
 
-// // Read information about all students in this gradebook
-// const students = gradebooks.readAll(gradebookId); // It will return the array of objects
+
+// Read information about all students in this gradebook
+ const students = gradebooks.readAll(gradebook); // It will return the array of objects
+ console.log(students);

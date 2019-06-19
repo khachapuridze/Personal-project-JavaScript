@@ -8,7 +8,7 @@ export class GradeBooksModel{
     }
 
     add (level, id){
-        if ( typeof id == 'number' && typeof level == 'number'){
+        if ( typeof id == 'string' && typeof level == 'number'){
             let id =Math.random().toString(36).substr(2, 8);
             this.grades.set(id , {level, id})
             return id;
@@ -27,25 +27,32 @@ export class GradeBooksModel{
     }
 
     addRecord(gradebookId, record){
-            if(this.groups.get("id") == gradebookId){
+        if(typeof gradebookId === "string" && typeof record === "object"){
                 this.grades.set("records",record);
-            }
-            else {
-                throw new Error("ooppss!")
-            }
+                return this.grades;
+          
+        }
+        else {
+            throw new Error("ooppss!")
+        }
 
 
     }
 
-    read(gradebookId, pupilId)
-    {
-        this.grades.get(gradebookId)
+    read(gradebookId, pupilId){
+        if(typeof gradebookId === "string" && typeof pupilId === "number"){
+
+            return this.grades;
+        }
+        else{
+            throw new Error ("Not valid!");
+        }
     }
 
-    readAll(gradebookId)
-    {
-        if(this.groups.get("id") == gradebookId){
-            return Array.from(this.groups);
+    readAll(gradebookId){
+        if(typeof gradebookId === "string"){
+            return Array.from(this.grades);
+
         }
         else{
             throw new Error ("OOPSS!")
