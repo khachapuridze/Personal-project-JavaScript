@@ -10,8 +10,6 @@ export class Validator{
                 if (data.hasOwnProperty(key) &&  typeof data[key] === "object"){
                     Validator.validator(data[key], schema[key]);
                 } else if (typeof data[key] !== schema[key]) {
-                    console.log(key);
-                    console.log(data);
                     throw new Error("oops");
                 }else if (Array.isArray(data[key]) && typeof data[key] == schema[key]){
                     for (let i of data[key]){

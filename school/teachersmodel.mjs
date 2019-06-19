@@ -34,9 +34,10 @@ export class TeachersModel{
     }
 
  
-    add(teacher){
+    async add(teacher){
         if(Validator.validator(teacher,this.schema)){
             let id = new Date().getUTCMilliseconds() + Math.floor(Math.random() * 100);
+            teacher.id = id;
             this.teachers.set(id, teacher);
             return id;
 
@@ -46,7 +47,7 @@ export class TeachersModel{
         }
     }
 
-    read(teacherId) {
+    async read(teacherId) {
         if(this.teachers.has(teacherId)) {
             return this.teachers.get(teacherId);
         }
@@ -55,7 +56,7 @@ export class TeachersModel{
         }
        
     }  
-    update(teacherId,updatedProfile){
+    async update(teacherId,updatedProfile){
         if(Validator.validator(updatedProfile,this.schema)){
             if(this.teachers.has(teacherId)) {
                  this.teachers.delete(teacherId);
@@ -71,7 +72,7 @@ export class TeachersModel{
     
 
 
-    remove(teacherId){
+    async remove(teacherId){
         if(this.teachers.has(teacherId)){
             this.teachers.delete(teacherId);
         }

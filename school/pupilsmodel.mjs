@@ -1,4 +1,3 @@
-
 import {Validator} from  './validator';
 export class PupilsModel{
     constructor(){
@@ -18,12 +17,13 @@ export class PupilsModel{
             ],
             "sex": "string", // male OR female
             "description": "string"
-          }
+          };
     }
 
-    add(pupils){
+     add(pupil){
         if(Validator.validator(pupil,this.schema)){
             let id = new Date().getUTCMilliseconds() + Math.floor(Math.random() * 100);
+            pupil.id = id;
             this.pupils.set(id, pupil);
             return id;
 
@@ -33,8 +33,8 @@ export class PupilsModel{
         }
     }
 
-    read(pupilid) {
-        if(this.teachers.has(pupilid)) {
+     async read(pupilid) {
+        if(this.pupils.has(pupilid)) {
             return this.pupils.get(pupilid);
         }
         else{
@@ -43,9 +43,9 @@ export class PupilsModel{
        
     }
     
-    upadate(pupilid,pupil){
+    async upadate(pupilid,pupil){
         if(Validator.validator(pupil,this.schema)){
-            if(this.teachers.has(pupilid)) {
+            if(this.pupils.has(pupilid)) {
                  this.pupils.delete(pupilid);
                  this.pupil.set(pupilid,pupil);
             }
@@ -59,7 +59,7 @@ export class PupilsModel{
     
 
 
-    remove(pupilid){
+    async remove(pupilid){
         if(this.pupils.has(pupilid)){
             this.pupils.delete(pupilid);
         }
