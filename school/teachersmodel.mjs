@@ -34,7 +34,7 @@ export class TeachersModel{
     }
 
  
-    async add(teacher){
+     add(teacher){
         if(Validator.validator(teacher,this.schema)){
             let id = new Date().getUTCMilliseconds() + Math.floor(Math.random() * 100);
             teacher.id = id;
@@ -47,16 +47,16 @@ export class TeachersModel{
         }
     }
 
-    async read(teacherId) {
+    read(teacherId) {
         if(this.teachers.has(teacherId)) {
             return this.teachers.get(teacherId);
         }
         else{
-            throw new Error ("OMG!!!");
+            throw new Error ("It wasn't founded ");
         }
        
     }  
-    async update(teacherId,updatedProfile){
+    update(teacherId,updatedProfile){
         if(Validator.validator(updatedProfile,this.schema)){
             if(this.teachers.has(teacherId)) {
                  this.teachers.delete(teacherId);
@@ -72,7 +72,7 @@ export class TeachersModel{
     
 
 
-    async remove(teacherId){
+     remove(teacherId){
         if(this.teachers.has(teacherId)){
             this.teachers.delete(teacherId);
         }

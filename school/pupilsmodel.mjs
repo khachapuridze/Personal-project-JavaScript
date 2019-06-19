@@ -25,7 +25,7 @@ export class PupilsModel{
             let id = new Date().getUTCMilliseconds() + Math.floor(Math.random() * 100);
             pupil.id = id;
             this.pupils.set(id, pupil);
-            return id;
+            return this.pupils.get(id);
 
         }
         else{
@@ -33,21 +33,21 @@ export class PupilsModel{
         }
     }
 
-     async read(pupilid) {
+    read(pupilid) {
         if(this.pupils.has(pupilid)) {
             return this.pupils.get(pupilid);
         }
         else{
-            throw new Error ("OMG!!!");
+            throw new Error ("It wasn't founded");
         }
        
     }
     
-    async upadate(pupilid,pupil){
+    update(pupilid,pupil){
         if(Validator.validator(pupil,this.schema)){
             if(this.pupils.has(pupilid)) {
                  this.pupils.delete(pupilid);
-                 this.pupil.set(pupilid,pupil);
+                 this.pupils.set(pupilid,pupil);
             }
             else{
                 throw new Error ("can't update!")
@@ -59,7 +59,7 @@ export class PupilsModel{
     
 
 
-    async remove(pupilid){
+    remove(pupilid){
         if(this.pupils.has(pupilid)){
             this.pupils.delete(pupilid);
         }

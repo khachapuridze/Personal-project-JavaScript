@@ -4,72 +4,95 @@ import {TeachersModel} from  './school';
 import {PupilsModel} from './school';
 import {GroupsModel} from './school';
 import {GradeBooksModel} from './school';
-const history = new SubjectsModel({
-    title: 'History',
-    lessons: 24,
-    description: 'My desc'
-  });
 
-let updatedProfile = {
+       // $$  SubjectModel And LMSModel
+
+// const history = new SubjectsModel({
+//     title: 'History',
+//     lessons: 24,
+//     description: 'My desc'
+//   });
+// console.log(history.id);
+
+// const lms = new LMSModel();
+// lms.add(history);
+// // lms.remove(history);
+// console.log(lms.readAll());
+// console.log(lms.verify(history));
+
+
+      // $$  TeachersModel $$
+
+// let data = {
+
+//   "name": {
+//     "first": "fasf",
+//     "last": "asf"
+//   },
+//   "image": "string",
+//   "dateOfBirth": "string", // format date
+//   "emails": [
+//     {
+//       "email": "some",
+//       "primary": true
+//     }
+//   ],
+//   "phones": [
+//     {
+//       "phone": "string",
+//       "primary": false
+//     }
+//   ],
+//   "sex": "string", // male or female
+//   "subjects": [
+//     {
+//       "subject": "string"
+//     }
+//   ],
+//   "description": "string",
+// };
+// let updatedProfile = {
+
+//   "name": {
+//     "first": "vaskaa",
+//     "last": "asf"
+//   },
+//   "image": "string",
+//   "dateOfBirth": "string", // format date
+//   "emails": [
+//     {
+//       "email": "some",
+//       "primary": true
+//     }
+//   ],
+//   "phones": [
+//     {
+//       "phone": "string",
+//       "primary": false
+//     }
+//   ],
+//   "sex": "string", // male or female
+//   "subjects": [
+//     {
+//       "subject": "string"
+//     }
+//   ],
+//   "description": "string",
+// };
+// const teachers = new TeachersModel();
+
+// const teacherId = teachers.add(data);
+// const updateTeacher = teachers.update(teacherId, updatedProfile);
+// teachers.remove(teacherId)
+// console.log(teachers.read(teacherId));
+// console.log(teacherId);
+
+
+    // $$PupilsModule$$
+
+let pupilData= {
   "name": {
-    "first": "gio",
-    "last": "asf"
-  },
-  "image": "string",
-  "dateOfBirth": "string", // format date
-  "emails": [
-    {
-      "email": "some",
-      "primary": true
-    }
-  ],
-  "phones": [
-    {
-      "phone": "string",
-      "primary": false
-    }
-  ],
-  "sex": "string", // male or female
-  "subjects": [
-    {
-      "subject": "string"
-    }
-  ],
-  "description": "string",
-};
-
-let data = {
-
-  "name": {
-    "first": "fasf",
-    "last": "asf"
-  },
-  "image": "string",
-  "dateOfBirth": "string", // format date
-  "emails": [
-    {
-      "email": "some",
-      "primary": true
-    }
-  ],
-  "phones": [
-    {
-      "phone": "string",
-      "primary": false
-    }
-  ],
-  "sex": "string", // male or female
-  "subjects": [
-    {
-      "subject": "string"
-    }
-  ],
-  "description": "string",
-};
-
-let pupil= {
-  "name": {
-    "first": "string",
+    "first": "george",
     "last": "string"
   },
   "image": "string",
@@ -84,6 +107,59 @@ let pupil= {
   "description": "string"
 };
 
+let updatePupilData= {
+  "name": {
+    "first": "george",
+    "last": "bvas"
+  },
+  "image": "string",
+  "dateOfBirth": "string", // format date
+  "phones": [
+    {
+      "phone": "string",
+      "primary": true
+    }
+  ],
+  "sex": "string", // male OR female
+  "description": "string"
+};
+
+const pupils = new PupilsModel();
+const pupil = pupils.add(pupilData);
+// console.log(pupil.id);
+pupils.update(pupil.id, updatePupilData);
+// pupils.remove(pupil.id)
+// console.log(pupils.read(pupil.id));
+
+
+
+
+
+          // $$GroupModule$$
+
+const room = 236;
+const groups = new GroupsModel();
+const groupId = groups.add(room);
+// console.log(groupId);
+groups.addPupil(groupId, pupil);
+groups.removePupil(groupId, pupil.id);
+// groups.update(groupId, {
+//   room: 237
+// });
+// groups.read(groupId)
+// groups.readAll();
+
+// console.log(groups.read(groupId));
+
+
+         // $$Gradebook$$
+
+// const pupilId = pupil.id;
+// const teacherId = teacherId;
+// const gradebooks = new GradebooksModel(groups, teachers, lms);
+// const level = 1;
+// const gradebook = gradebooks.add(level, group.id);
+
 
 // const record = {
 //   pupilId: pupilId,
@@ -92,54 +168,24 @@ let pupil= {
 //   lesson: 1,
 //   mark: 9
 // };
-const pupils = new PupilsModel();
-const pupiladd = pupils.add(pupil);
-console.log(pupils.read(pupiladd));
-
-
-// const teacherId = teacherId;
-
-const room = 236;
-const groups = new GroupsModel();
-const groupId = groups.add(room);
-// const gradebooks = new GradeBooksModel(groups, teachers, lms);
-console.log(groupId);
-
-console.log(groups.readAll());
 
 
 
-// const lms = new LMSModel();
-// const teachers = new TeachersModel();
-// const teacherId = teachers.add(data);
-// teachers.remove(teacherId)
-// console.log(teacherId);
+// gradebooks.addRecord(gradebookId, record);
 
-// const teacherIds = teachers.update(teacherId, updatedProfile);
-// console.log(teachers.read(teacherId));
+// // Read information about oliver results
+// const oliver = gradebooks.read(gradebookId, pupilId);
+// {
+//   name: 'Oliver Black',
+//   records: [
+//     {
+//       teacher: 'Elizabeth Holms',
+//       subject: 'History',
+//       lesson: 1,
+//       mark: 9
+//     }
+//   ]
+// }
 
-
-// will remove techer
-// teachers.remove(teacherId)
-
-
-
-
-// lms.add(history);
-// lms.remove(history);
-
-// console.log(lms);
-
-// // will return true or false. Answer will be true if we added this subject to lms
-// console.log(lms.verify(history));
-// console.log(lms.readAll());
-
-// // will return array of registered subjects
-// lms.readAll();
-// [
-//   {
-//     subjectId: null
-//   }
-// ]
-
-
+// // Read information about all students in this gradebook
+// const students = gradebooks.readAll(gradebookId); // It will return the array of objects

@@ -2,7 +2,7 @@ import {Validator} from  './validator';
 export class SubjectsModel{
     constructor(subjects){
         this.subjects = subjects;
-        this.id;
+        this.id=this.id;
         this.schema = {
             "title": "string",
             "lessons": "number",
@@ -10,6 +10,7 @@ export class SubjectsModel{
           }
         if(Validator.validator(subjects,this.schema)){
             this.id =  new Date().getUTCMilliseconds() + Math.floor(Math.random() * 100);
+            
         }
         else{
            throw new Error ("Not valid parameters!");

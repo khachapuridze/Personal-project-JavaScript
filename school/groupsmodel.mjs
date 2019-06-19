@@ -1,10 +1,7 @@
 export class GroupsModel{
     constructor(){
         this.groups = new Map();
-        this.schema = {
-            id: 'JEF5H43H',
-            room: 237
-        };
+
     }
 
     add(room){
@@ -35,12 +32,28 @@ export class GroupsModel{
         }
     }
 
+    removePupil(groupId, pupilid){
+        if(typeof groupId === "string" && typeof pupilid === "number"){
+            if(this.groups.get("id") == groupId){
+                this.groups.clear(groupId);
+            }
+            else{
+                throw new Error ("Not founded")
+            }
+        }
+        else{
+            throw new Error ("Invalid types");
+        }
+    }
+
     update(groupId,obj){
         if(typeof groupId === "string" && typeof obj === "object"){
             if(this.groups.get("id") == groupId){
-                for (i of obj){
-                    this.groups.set(i);
-                }
+                Object.keys(obj).forEach(key => {
+                    let k = key;
+                    let v =obj[key];
+                    this.groups.set(k,v);
+                });
             }
             else{
                 throw new Error ("oops!");

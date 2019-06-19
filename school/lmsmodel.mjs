@@ -14,7 +14,7 @@ export class LMSModel{
 
     remove(subject){
         if(this.subjects.has(subject.id)){
-            this.teachers.delete(subject.id);
+            this.subjects.delete(subject.id);
         }
         else{
             throw new Error ("There is not such subject");
